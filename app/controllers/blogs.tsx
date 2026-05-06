@@ -10,7 +10,7 @@ import type { AppContext } from '../router.ts'
 import { routes } from '../routes.ts'
 import { Layout } from '../ui/layout.tsx'
 import { render } from '../utils/render.tsx'
-import { SampleButton } from '../ui/SampleButton.tsx'
+// import { SampleButton } from '../ui/SampleButton.tsx'
 
 const blogPostFormSchema = f.object({
   title: f.field(s.string().pipe(minLength(1)).pipe(maxLength(140))),
@@ -30,7 +30,7 @@ function createBlogIndexPage(props: { posts: BlogPost[]; query: string }) {
     return () => (
       <Layout title="Blogs">
         <h1>Blogs</h1>
-        <SampleButton ctr={1} />
+        {/* <SampleButton ctr={1} /> */}
         <p>
           Read articles from this local Electron Remix app. Subscribe using{' '}
           <a href={routes.blogs.rss.href()}>RSS</a>.
