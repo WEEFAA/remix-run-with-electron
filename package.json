@@ -1,0 +1,29 @@
+{
+  "name": "sample-electron-app-with-remix-v3",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_ENV=development env -u ELECTRON_RUN_AS_NODE electron electron/bootstrap.cjs",
+    "start": "env -u ELECTRON_RUN_AS_NODE electron electron/bootstrap.cjs",
+    "dev:web": "tsx watch server.ts",
+    "start:web": "tsx server.ts",
+    "seed": "node --import tsx scripts/seed.ts",
+    "test": "node --test --import tsx test/**/*.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=24.3.0"
+  },
+  "dependencies": {
+    "@rayweefa/electron-fetch-server": "^0.1.4",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2",
+    "electron": "^42.0.0",
+    "remix": "^3.0.0-beta.0",
+    "tsx": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "typescript": "latest"
+  }
+}

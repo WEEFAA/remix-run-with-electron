@@ -1,0 +1,205 @@
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: undefined,
+npm warn EBADENGINE   required: { node: '>=24.3.0' },
+npm warn EBADENGINE   current: { node: 'v22.18.0', npm: '10.9.3' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: '@remix-run/cli@0.2.0',
+npm warn EBADENGINE   required: { node: '>=24.3.0' },
+npm warn EBADENGINE   current: { node: 'v22.18.0', npm: '10.9.3' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: '@remix-run/test@0.3.0',
+npm warn EBADENGINE   required: { node: '>=24.3.0' },
+npm warn EBADENGINE   current: { node: 'v22.18.0', npm: '10.9.3' }
+npm warn EBADENGINE }
+npm warn EBADENGINE Unsupported engine {
+npm warn EBADENGINE   package: 'remix@3.0.0-beta.0',
+npm warn EBADENGINE   required: { node: '>=24.3.0' },
+npm warn EBADENGINE   current: { node: 'v22.18.0', npm: '10.9.3' }
+npm warn EBADENGINE }
+
+> postinstall
+> electron-rebuild -f -w better-sqlite3
+
+Searching dependency tree
+Building modules: better-sqlite3
+
+  TOUCH 4292fa9a667d77b27488aa109b010a85bce8e4e7a1c7aa0370cea902395c3866.intermediate
+  ACTION deps_sqlite3_gyp_locate_sqlite3_target_copy_builtin_sqlite3 4292fa9a667d77b27488aa109b010a85bce8e4e7a1c7aa0370cea902395c3866.intermediate
+  TOUCH Release/obj.target/deps/locate_sqlite3.stamp
+  CC(target) Release/obj.target/sqlite3/gen/sqlite3/sqlite3.o
+  LIBTOOL-STATIC Release/sqlite3.a
+  CXX(target) Release/obj.target/better_sqlite3/src/better_sqlite3.o
+In file included from ../src/better_sqlite3.cpp:11:
+In file included from /Users/weefa/.electron-gyp/42.0.0/include/node/node.h:80:
+In file included from /Users/weefa/.electron-gyp/42.0.0/include/node/v8.h:33:
+In file included from /Users/weefa/.electron-gyp/42.0.0/include/node/v8-function.h:15:
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-template.h:760:12: warning: cast from 'NamedPropertySetterCallback' (aka 'Intercepted (*)(Local<Name>, Local<Value>, const PropertyCallbackInfo<void> &)') to 'NamedPropertySetterCallbackV2' (aka 'Intercepted (*)(Local<Name>, Local<Value>, const PropertyCallbackInfo<Boolean> &)') converts to incompatible function type [-Wcast-function-type-mismatch]
+  760 |     return NamedPropertySetterCallbackV2(value);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-template.h:772:12: warning: cast from 'NamedPropertyDefinerCallback' (aka 'Intercepted (*)(Local<Name>, const PropertyDescriptor &, const PropertyCallbackInfo<void> &)') to 'NamedPropertyDefinerCallbackV2' (aka 'Intercepted (*)(Local<Name>, const PropertyDescriptor &, const PropertyCallbackInfo<Boolean> &)') converts to incompatible function type [-Wcast-function-type-mismatch]
+  772 |     return NamedPropertyDefinerCallbackV2(value);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-template.h:887:12: warning: cast from 'IndexedPropertySetterCallbackV2' (aka 'v8::Intercepted (*)(unsigned int, Local<Value>, const PropertyCallbackInfo<void> &)') to 'IndexedPropertySetterCallback' (aka 'v8::Intercepted (*)(unsigned int, Local<Value>, const PropertyCallbackInfo<Boolean> &)') converts to incompatible function type [-Wcast-function-type-mismatch]
+  887 |     return IndexedPropertySetterCallback(value);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-template.h:899:12: warning: cast from 'IndexedPropertyDefinerCallbackV2' (aka 'v8::Intercepted (*)(unsigned int, const v8::PropertyDescriptor &, const PropertyCallbackInfo<void> &)') to 'IndexedPropertyDefinerCallback' (aka 'v8::Intercepted (*)(unsigned int, const v8::PropertyDescriptor &, const PropertyCallbackInfo<Boolean> &)') converts to incompatible function type [-Wcast-function-type-mismatch]
+  899 |     return IndexedPropertyDefinerCallback(value);
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:22:
+../src/util/helpers.cpp:89:28: error: call to member function 'SetNativeDataProperty' is ambiguous
+   89 |         recv->InstanceTemplate()->SetNativeDataProperty(
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-template.h:104:8: note: candidate function
+  104 |   void SetNativeDataProperty(
+      |        ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-template.h:110:8: note: candidate function
+  110 |   void SetNativeDataProperty(
+      |        ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-template.h:118:8: note: candidate function
+  118 |   void SetNativeDataProperty(
+      |        ^
+In file included from ../src/better_sqlite3.cpp:34:
+../src/addon.cpp:36:3: error: too few arguments to function call, single argument 'tag' was not specified
+   36 |                 OnlyAddon->SqliteError.Reset(OnlyIsolate, SqliteError);
+      |                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:43:
+../src/objects/backup.cpp:46:2: error: too few arguments to function call, single argument 'tag' was not specified
+   46 |         UseAddon;
+      |         ^~~~~~~~
+../src/util/macros.cpp:33:33: note: expanded from macro 'UseAddon'
+   33 | #define UseAddon Addon* addon = OnlyAddon
+      |                                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:44:
+../src/objects/statement.cpp:72:2: error: too few arguments to function call, single argument 'tag' was not specified
+   72 |         UseAddon;
+      |         ^~~~~~~~
+../src/util/macros.cpp:33:33: note: expanded from macro 'UseAddon'
+   33 | #define UseAddon Addon* addon = OnlyAddon
+      |                                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:44:
+../src/objects/statement.cpp:229:2: error: too few arguments to function call, single argument 'tag' was not specified
+  229 |         UseAddon;
+      |         ^~~~~~~~
+../src/util/macros.cpp:33:33: note: expanded from macro 'UseAddon'
+   33 | #define UseAddon Addon* addon = OnlyAddon
+      |                                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:45:
+../src/objects/database.cpp:155:2: error: too few arguments to function call, single argument 'tag' was not specified
+  155 |         UseAddon;
+      |         ^~~~~~~~
+../src/util/macros.cpp:33:33: note: expanded from macro 'UseAddon'
+   33 | #define UseAddon Addon* addon = OnlyAddon
+      |                                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:45:
+../src/objects/database.cpp:203:2: error: too few arguments to function call, single argument 'tag' was not specified
+  203 |         UseAddon;
+      |         ^~~~~~~~
+../src/util/macros.cpp:33:33: note: expanded from macro 'UseAddon'
+   33 | #define UseAddon Addon* addon = OnlyAddon
+      |                                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:45:
+../src/objects/database.cpp:261:2: error: too few arguments to function call, single argument 'tag' was not specified
+  261 |         UseAddon;
+      |         ^~~~~~~~
+../src/util/macros.cpp:33:33: note: expanded from macro 'UseAddon'
+   33 | #define UseAddon Addon* addon = OnlyAddon
+      |                                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from ../src/better_sqlite3.cpp:46:
+../src/objects/statement-iterator.cpp:79:2: error: too few arguments to function call, single argument 'tag' was not specified
+   79 |         UseAddon;
+      |         ^~~~~~~~
+../src/util/macros.cpp:33:33: note: expanded from macro 'UseAddon'
+   33 | #define UseAddon Addon* addon = OnlyAddon
+      |                                 ^~~~~~~~~
+../src/util/macros.cpp:30:77: note: expanded from macro 'OnlyAddon'
+   30 | #define OnlyAddon static_cast<Addon*>(info.Data().As<v8::External>()->Value())
+      |                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:58:9: note: 'Value' declared here
+   58 |   void* Value(ExternalPointerTypeTag tag) const;
+      |         ^     ~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/better_sqlite3.cpp:48:1: warning: cast from 'void (*)(v8::Local<v8::Object>, v8::Local<v8::Value>, v8::Local<v8::Context>)' to 'node::addon_context_register_func' (aka 'void (*)(v8::Local<v8::Object>, v8::Local<v8::Value>, v8::Local<v8::Context>, void *)') converts to incompatible function type [-Wcast-function-type-mismatch]
+   48 | NODE_MODULE_INIT(/* exports, context */) {
+      | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/weefa/.electron-gyp/42.0.0/include/node/node.h:1435:3: note: expanded from macro 'NODE_MODULE_INIT'
+ 1435 |   NODE_MODULE_CONTEXT_AWARE(NODE_GYP_MODULE_NAME,                     \
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 1436 |                             NODE_MODULE_INITIALIZER)                  \
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/weefa/.electron-gyp/42.0.0/include/node/node.h:1404:3: note: expanded from macro 'NODE_MODULE_CONTEXT_AWARE'
+ 1404 |   NODE_MODULE_CONTEXT_AWARE_X(modname, regfunc, NULL, 0)
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/weefa/.electron-gyp/42.0.0/include/node/node.h:1386:7: note: expanded from macro 'NODE_MODULE_CONTEXT_AWARE_X'
+ 1386 |       (node::addon_context_register_func) (regfunc),                  \
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/better_sqlite3.cpp:60:65: error: too few arguments to function call, expected 3, have 2
+   60 |         v8::Local<v8::External> data = v8::External::New(isolate, addon);
+      |                                        ~~~~~~~~~~~~~~~~~               ^
+/Users/weefa/.electron-gyp/42.0.0/include/node/v8-external.h:41:26: note: 'New' declared here
+   41 |   static Local<External> New(Isolate* isolate, void* value,
+      |                          ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   42 |                              ExternalPointerTypeTag tag);
+      |                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+5 warnings and 10 errors generated.
+make: *** [Release/obj.target/better_sqlite3/src/better_sqlite3.o] Error 1
+rm 4292fa9a667d77b27488aa109b010a85bce8e4e7a1c7aa0370cea902395c3866.intermediate
+Error: `make` failed with exit code: 2
+    at ChildProcess.<anonymous> (/Users/weefa/Desktop/dev/electron-remix-v3/node_modules/node-gyp/lib/build.js:219:23)
+
+✖ Rebuild Failed
+
+An unhandled error occurred inside electron-rebuild
+node-gyp failed to rebuild '/Users/weefa/Desktop/dev/electron-remix-v3/node_modules/better-sqlite3'
+
+Error: node-gyp failed to rebuild '/Users/weefa/Desktop/dev/electron-remix-v3/node_modules/better-sqlite3'
+    at ChildProcess.<anonymous> (file:///Users/weefa/Desktop/dev/electron-remix-v3/node_modules/@electron/rebuild/lib/module-type/node-gyp/node-gyp.js:114:24)
+    at ChildProcess.emit (node:events:518:28)
+    at ChildProcess._handle.onexit (node:internal/child_process:293:12)
+npm error code 255
+npm error path /Users/weefa/Desktop/dev/electron-remix-v3
+npm error command failed
+npm error command sh -c electron-rebuild -f -w better-sqlite3
+npm error A complete log of this run can be found in: /Users/weefa/.npm/_logs/2026-05-06T16_31_42_066Z-debug-0.log
