@@ -5,7 +5,7 @@ interface SampleButtonProps extends SerializableProps {
 }
 
 export const SampleButton = clientEntry(
-  '/assets/app/ui/SampleButton.tsx#SampleButton',
+  import.meta.url,
   function SampleButton(handle: Handle<SampleButtonProps>) {
     let ctr = handle.props.ctr ?? 0
     return () => (

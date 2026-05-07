@@ -10,7 +10,7 @@ interface PromptButtonProps extends SerializableProps {
 }
 
 export const PromptButton = clientEntry(
-  '/assets/app/ui/prompt-button.tsx#PromptButton',
+  import.meta.url,
   function PromptButton(handle: Handle<PromptButtonProps>) {
     let state: CopyState = 'idle'
 
@@ -27,7 +27,7 @@ export const PromptButton = clientEntry(
       return (
         <button
           type="button"
-          className={state}
+          class={state}
           style={{
             background: active ? 'var(--surface-4)' : undefined,
             color: active ? 'var(--brand-blue)' : undefined,
