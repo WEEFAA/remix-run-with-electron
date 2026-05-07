@@ -23,7 +23,7 @@ export const seedBlogPosts: BlogPost[] = [
     excerpt: 'Why running Remix with an Electron custom protocol keeps the app architecture simple.',
     body:
       'This project runs Remix v3 inside Electron with a Fetch-based protocol adapter.\n\n' +
-      'The same route contract powers landing pages, blog pages, and RSS without adding a second API layer.',
+      'The same route contract powers landing pages and blog pages without adding a second API layer.',
     publishedAt: Date.parse('2026-04-01T09:00:00.000Z'),
   },
   {
@@ -34,15 +34,6 @@ export const seedBlogPosts: BlogPost[] = [
       'Start with routes.ts as the contract, then map controllers in router.ts.\n\n' +
       'This keeps ownership clear and avoids tight coupling between rendering and transport.',
     publishedAt: Date.parse('2026-04-10T09:00:00.000Z'),
-  },
-  {
-    id: 'rss-with-remix-responses',
-    title: 'RSS with Remix Responses',
-    excerpt: 'Generating RSS XML directly from a controller action with explicit headers.',
-    body:
-      'RSS is just another route that returns application/rss+xml.\n\n' +
-      'You can generate XML from the same repository data and keep feed links in sync with route helpers.',
-    publishedAt: Date.parse('2026-04-20T09:00:00.000Z'),
   },
 ]
 

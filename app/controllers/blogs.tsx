@@ -29,34 +29,56 @@ function createBlogIndexPage(props: { posts: BlogPost[]; query: string }) {
   return function BlogIndexPage() {
     return () => (
       <Layout title="Blogs">
-        <h1>Blogs</h1>
-        {/* <SampleButton ctr={1} /> */}
-        <p>
-          Read articles from this local Electron Remix app. Subscribe using{' '}
-          <a href={routes.blogs.rss.href()}>RSS</a>.
-        </p>
-        <p>
-          <a href={routes.blogs.new.href()}>Write a post as guest</a>
-        </p>
-        <form method="get" action={routes.blogs.index.href()}>
-          <label>
-            Search titles: <input type="text" name="q" value={props.query} />
-          </label>{' '}
-          <button type="submit">Search</button>
-        </form>
-        <ul>
-          {props.posts.map((post) => (
-            <li key={post.id}>
-              <h2>
-                <a href={routes.blogs.show.href({ id: post.id })}>{post.title}</a>
-              </h2>
-              <p>
-                <small>Published {formatDate(post.publishedAt)}</small>
-              </p>
-              <p>{post.excerpt}</p>
-            </li>
-          ))}
-        </ul>
+        <div class="stack">
+          <div class="postMeta">
+            <h1>Blogs</h1>
+            <a class="pill" href={routes.blogs.new.href()}>
+              Write a post
+            </a>
+          </div>
+
+          {/* <SampleButton ctr={1} /> */}
+          <p class="muted">Minimal posts list, stored locally.</p>
+
+          <div class="card">
+            <div class="cardPad">
+              <form method="get" action={routes.blogs.index.href()}>
+                <label>
+                  Search titles
+                  <input type="text" name="q" value={props.query} />
+                </label>
+                <div class="buttonRow" style={{ marginTop: 12 }}>
+                  <button type="submit">Search</button>
+                  {props.query ? (
+                    <a class="pill" href={routes.blogs.index.href()}>
+                      Clear
+                    </a>
+                  ) : null}
+                </div>
+              </form>
+            </div>
+          </div>
+
+          {props.posts.length === 0 ? <p class="muted">No posts found.</p> : null}
+
+          <ul class="postList">
+            {props.posts.map((post) => (
+              <li key={post.id} class="card">
+                <div class="cardPad stack">
+                  <div class="postMeta">
+                    <a href={routes.blogs.show.href({ id: post.id })}>
+                      <strong>{post.title}</strong>
+                    </a>
+                    <span class="muted" style={{ fontSize: 13 }}>
+                      {formatDate(post.publishedAt)}
+                    </span>
+                  </div>
+                  <p class="muted">{post.excerpt}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       </Layout>
     )
   }
@@ -69,32 +91,48 @@ function createBlogNewPage(props: {
   return function BlogNewPage() {
     return () => (
       <Layout title="New blog post">
-        <h1>Write a new post</h1>
-        <p>Guest posting is enabled. Body accepts MDX-flavored markdown text.</p>
-        {props.error ? <p style={{ color: 'crimson' }}>{props.error}</p> : null}
+        <div class="stack">
+          <div class="postMeta">
+            <h1>Write a new post</h1>
+            <a class="pill" href={routes.blogs.index.href()}>
+              Back
+            </a>
+          </div>
 
-        <form method="post" action={routes.blogs.create.href()}>
-          <p>
-            <label>
-              Title
-              <br />
-              <input name="title" value={props.values?.title ?? ''} />
-            </label>
-          </p>
-          <p>
-            <label>
-              Body (MDX)
-              <br />
-              <textarea name="body" rows={18} cols={80}>
-                {props.values?.body ?? ''}
-              </textarea>
-            </label>
-          </p>
-          <p>
-            <button type="submit">Publish</button>{' '}
-            <a href={routes.blogs.index.href()}>Cancel</a>
-          </p>
-        </form>
+          <p class="muted">Guest posting is enabled. Body accepts MDX-flavored markdown text.</p>
+          {props.error ? (
+            <div class="card" style={{ borderColor: 'rgba(220, 38, 38, 0.35)' }}>
+              <div class="cardPad" style={{ color: '#b91c1c' }}>
+                {props.error}
+              </div>
+            </div>
+          ) : null}
+
+          <div class="card">
+            <div class="cardPad">
+              <form method="post" action={routes.blogs.create.href()}>
+                <div class="stack">
+                  <label>
+                    Title
+                    <input name="title" value={props.values?.title ?? ''} />
+                  </label>
+                  <label>
+                    Body (MDX)
+                    <textarea name="body" rows={18}>
+                      {props.values?.body ?? ''}
+                    </textarea>
+                  </label>
+                  <div class="buttonRow">
+                    <button type="submit">Publish</button>
+                    <a class="pill" href={routes.blogs.index.href()}>
+                      Cancel
+                    </a>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </Layout>
     )
   }
@@ -104,18 +142,26 @@ function createBlogShowPage(props: { post: BlogPost }) {
   return function BlogShowPage() {
     return () => (
       <Layout title={props.post.title}>
-        <p>
-          <a href={routes.blogs.index.href()}>Back to all blogs</a>
-        </p>
-        <h1>{props.post.title}</h1>
-        <p>
-          <small>Published {formatDate(props.post.publishedAt)}</small>
-        </p>
-        <article>
-          {props.post.body.split(/\n\n+/).map((paragraph, index) => (
-            <p key={`${props.post.id}-${index}`}>{paragraph}</p>
-          ))}
-        </article>
+        <div class="stack">
+          <div class="postMeta">
+            <a class="pill" href={routes.blogs.index.href()}>
+              Back
+            </a>
+            <span class="muted" style={{ fontSize: 13 }}>
+              {formatDate(props.post.publishedAt)}
+            </span>
+          </div>
+
+          <h1>{props.post.title}</h1>
+
+          <article class="prose card">
+            <div class="cardPad">
+              {props.post.body.split(/\n\n+/).map((paragraph, index) => (
+                <p key={`${props.post.id}-${index}`}>{paragraph}</p>
+              ))}
+            </div>
+          </article>
+        </div>
       </Layout>
     )
   }
@@ -165,86 +211,7 @@ const blogsController = {
       let Page = createBlogShowPage({ post })
       return render(<Page />, request)
     },
-
-    async rss({ request }) {
-      let posts = await blogRepository.listPosts()
-      let origin = getOrigin(request.url)
-
-      let xml = buildRssXml({
-        title: 'Electron Remix Blog',
-        description: 'Simple blog powered by Remix v3 and Electron protocol handlers.',
-        siteUrl: new URL(routes.blogs.index.href(), origin).toString(),
-        feedUrl: new URL(routes.blogs.rss.href(), origin).toString(),
-        posts: posts.map((post) => ({
-          title: post.title,
-          description: post.excerpt,
-          guid: post.id,
-          url: new URL(routes.blogs.show.href({ id: post.id }), origin).toString(),
-          publishedAt: post.publishedAt,
-        })),
-      })
-
-      return new Response(xml, {
-        headers: {
-          'Content-Type': 'application/rss+xml; charset=utf-8',
-          'Cache-Control': 'no-store',
-        },
-      })
-    },
   },
 } satisfies Controller<typeof routes.blogs, AppContext>
-
-function getOrigin(requestUrl: string) {
-  let url = new URL(requestUrl)
-  if (url.origin !== 'null') return url.origin
-  return `${url.protocol}//${url.host || 'local'}`
-}
-
-function xmlEscape(value: string) {
-  return value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&apos;')
-}
-
-function buildRssXml(input: {
-  title: string
-  description: string
-  siteUrl: string
-  feedUrl: string
-  posts: Array<{
-    title: string
-    description: string
-    guid: string
-    url: string
-    publishedAt: number
-  }>
-}) {
-  return `<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>${xmlEscape(input.title)}</title>
-    <link>${xmlEscape(input.siteUrl)}</link>
-    <description>${xmlEscape(input.description)}</description>
-    <atom:link href="${xmlEscape(input.feedUrl)}" rel="self" type="application/rss+xml" />
-    ${input.posts
-      .map((post) => {
-        let pubDate = new Date(post.publishedAt).toUTCString()
-        return `
-    <item>
-      <title>${xmlEscape(post.title)}</title>
-      <link>${xmlEscape(post.url)}</link>
-      <guid isPermaLink="false">${xmlEscape(post.guid)}</guid>
-      <pubDate>${xmlEscape(pubDate)}</pubDate>
-      <description>${xmlEscape(post.description)}</description>
-    </item>`
-      })
-      .join('')}
-  </channel>
-</rss>
-`
-}
 
 export default blogsController

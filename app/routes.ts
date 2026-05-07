@@ -7,7 +7,6 @@ export const routes = route({
     index: get('/blogs'),
     create: post('/blogs'),
     new: get('/blogs/new'),
-    rss: '/blogs/rss.xml',
     show: get('/blogs/:id'),
   },
 })
