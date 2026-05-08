@@ -3,6 +3,7 @@ import type { BuildAction } from 'remix/fetch-router'
 import type { BlogPost } from '../data/blogs.server.ts'
 import { blogRepository } from '../data/blogRepository.server.ts'
 import { routes } from '../routes.ts'
+import { ParrotScene } from '../ui/parrot-scene.tsx'
 import { Layout } from '../ui/layout.tsx'
 import { render } from '../utils/render.tsx'
 
@@ -19,8 +20,9 @@ function createLandingPage(props: { recentPosts: BlogPost[]; query: string }) {
   return function LandingPage() {
     return () => (
       <Layout title="Electron Remix Blog">
+        <ParrotScene modelUrl={routes.assets.href({ path: 'app/assets/Parrot.glb' })} />
         <p>
-          <span class="pill">Local-first · Minimal UI · No RSS</span>
+          <span class="pill">Local-first</span>
         </p>
         <div class="stack">
           <h1>Electron Remix Blog</h1>
@@ -35,7 +37,12 @@ function createLandingPage(props: { recentPosts: BlogPost[]; query: string }) {
               <form method="get" action={routes.blogs.index.href()}>
                 <label>
                   Search titles
-                  <input type="text" name="q" value={props.query} />
+                  <input
+                    key={`q:${props.query || 'empty'}`}
+                    type="text"
+                    name="q"
+                    value={props.query}
+                  />
                 </label>
                 <div class="buttonRow" style={{ marginTop: 12 }}>
                   <button type="submit">Search</button>

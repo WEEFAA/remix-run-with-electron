@@ -50,7 +50,11 @@ function createBlogIndexPage(props: { posts: BlogPost[]; query: string }) {
                 <div class="buttonRow" style={{ marginTop: 12 }}>
                   <button type="submit">Search</button>
                   {props.query ? (
-                    <a class="pill" href={routes.blogs.index.href()}>
+                    <a
+                      class="pill"
+                      href={routes.blogs.index.href(undefined, { q: '' })}
+                      rmx-document=""
+                    >
                       Clear
                     </a>
                   ) : null}

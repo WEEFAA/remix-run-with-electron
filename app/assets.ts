@@ -13,9 +13,21 @@ function isAllowedAssetPath(filePath: string) {
   return false
 }
 
+function isScriptPath(filePath: string) {
+  return (
+    filePath.endsWith('.ts') ||
+    filePath.endsWith('.tsx') ||
+    filePath.endsWith('.js') ||
+    filePath.endsWith('.jsx')
+  )
+}
+
 function contentTypeFor(filePath: string) {
   if (filePath.endsWith('.css')) return 'text/css; charset=utf-8'
-  return 'application/javascript; charset=utf-8'
+  if (isScriptPath(filePath)) return 'application/javascript; charset=utf-8'
+  if (filePath.endsWith('.map')) return 'application/json; charset=utf-8'
+  if (filePath.endsWith('.glb')) return 'model/gltf-binary'
+  return 'application/octet-stream'
 }
 
 async function buildScript(absPath: string) {
@@ -76,12 +88,13 @@ export const assets = {
       return new Response('Not Found', { status: 404 })
     }
 
-    let body: string
+    let body: string | ArrayBuffer
     try {
-      if (absPath.endsWith('.css')) {
-        body = await fs.readFile(absPath, 'utf8')
-      } else {
-        body = await buildScript(absPath)
+      if (absPath.endsWith('.css')) body = await fs.readFile(absPath, 'utf8')
+      else if (isScriptPath(absPath)) body = await buildScript(absPath)
+      else {
+        let buf = await fs.readFile(absPath)
+        body = buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)
       }
     } catch (error) {
       console.error('Asset build error:', error)

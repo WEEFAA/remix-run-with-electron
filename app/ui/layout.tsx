@@ -30,7 +30,7 @@ export function Layout() {
         <footer class="footer">
           <div class="container">
             <div class="muted">
-              Minimal local blog running in Electron with Remix v3 route controllers.
+              Minimal local blog running in Electron with Remix v3.
             </div>
           </div>
         </footer>

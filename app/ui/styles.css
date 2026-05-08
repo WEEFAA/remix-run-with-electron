@@ -229,3 +229,40 @@ button:hover {
   color: var(--muted);
   font-size: 13px;
 }
+
+/* Home overlay model (subtle, above content). */
+.parrotOverlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  --parrot-w: 260px;
+  --parrot-h: 220px;
+  --parrot-margin-right: 24px;
+  --parrot-margin-bottom: 96px;
+  --parrot-x: calc(100vw - var(--parrot-margin-right) - var(--parrot-w));
+  --parrot-y: calc(100vh - var(--parrot-margin-bottom) - var(--parrot-h));
+  width: var(--parrot-w);
+  height: var(--parrot-h);
+  transform: translate3d(var(--parrot-x), var(--parrot-y), 0);
+  z-index: 40;
+  pointer-events: none;
+  opacity: 0.72;
+  filter: saturate(0.95) contrast(0.95);
+  will-change: transform;
+}
+
+.parrotCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .parrotOverlay {
+    --parrot-w: 200px;
+    --parrot-h: 168px;
+    --parrot-margin-right: 14px;
+    --parrot-margin-bottom: 78px;
+    opacity: 0.6;
+  }
+}
