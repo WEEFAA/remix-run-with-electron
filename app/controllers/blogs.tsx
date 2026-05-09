@@ -10,6 +10,7 @@ import type { AppContext } from '../router.ts'
 import { routes } from '../routes.ts'
 import { Layout } from '../ui/layout.tsx'
 import { render } from '../utils/render.tsx'
+import { ParrotScene } from '../ui/parrot-scene.tsx'
 // import { SampleButton } from '../ui/SampleButton.tsx'
 
 const blogPostFormSchema = f.object({
@@ -29,6 +30,7 @@ function createBlogIndexPage(props: { posts: BlogPost[]; query: string }) {
   return function BlogIndexPage() {
     return () => (
       <Layout title="Blogs">
+        <ParrotScene modelUrl={routes.assets.href({ path: 'app/assets/Parrot.glb' })} />
         <div class="stack">
           <div class="postMeta">
             <h1>Blogs</h1>
@@ -95,6 +97,7 @@ function createBlogNewPage(props: {
   return function BlogNewPage() {
     return () => (
       <Layout title="New blog post">
+        <ParrotScene modelUrl={routes.assets.href({ path: 'app/assets/Parrot.glb' })} />
         <div class="stack">
           <div class="postMeta">
             <h1>Write a new post</h1>
