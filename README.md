@@ -1,11 +1,11 @@
 # Sample Electron App with Remix V3
 
-A minimal Electron + Remix v3 app that implements a simple **blog + RSS**.
+A minimal Electron + Remix v3 app that implements a simple **blog**.
 
 ## Starter Shape
 
 - `app/controllers/home.tsx` owns the home page.
-- `app/controllers/blogs.tsx` owns `/blogs` pages + RSS.
+- `app/controllers/blogs.tsx` owns `/blogs` pages.
 - `app/routes.ts` defines the route contract.
 - `app/router.ts` wires routes to handlers.
 - `app/ui/` holds the shared document and layout wrappers.
@@ -25,7 +25,6 @@ A minimal Electron + Remix v3 app that implements a simple **blog + RSS**.
 - `/blogs/new` guest post form
 - `POST /blogs` create new post
 - `/blogs/:id` read post
-- `/blogs/rss.xml` RSS feed
 
 ## Data (SQLite)
 
@@ -40,12 +39,29 @@ Before running the app the first time, initialize the DB:
 npm run seed
 ```
 
-## Commands
+## Running the App
+
+### Electron (recommended)
 
 ```sh
 npm i
 npm run seed
 npm run dev
+```
+
+### Web-only (no Electron)
+
+```sh
+npm i
+npm run seed
+npm run dev:web
+```
+
+## Commands
+
+```sh
+npm run start
+npm run start:web
 npm test
 npm run typecheck
 ```
